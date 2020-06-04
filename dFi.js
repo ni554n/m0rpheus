@@ -1,6 +1,6 @@
 const { dFi, deezerApi } = require("d-fi");
 
-deezerApi.arl = process.env.ARL;
+deezerApi.arl = process.env.ARL_DFI || process.env.ARL;
 
 module.exports = async (trackUrl) => { 
   try {

@@ -1,3 +1,3 @@
 const dFi = require("./dFi");
 
-exports.downloadMusic = (trackUrl) => { return dFi(trackUrl); }
+exports.downloadMusic = async (trackUrl) => { return await dFi(trackUrl); }
