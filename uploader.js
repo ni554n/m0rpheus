@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+require("isomorphic-fetch");
 const { Client, OneDriveLargeFileUploadTask } = require("@microsoft/microsoft-graph-client");
 
 const tokenExpiredError = new Error("Microsoft Graph API access token provided by Pipedream is no longer valid. Please reauthenticate.");
