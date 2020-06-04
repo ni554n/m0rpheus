@@ -17,6 +17,8 @@ function start() {
   workQueue.process(100, async (job) => {
     const savedFilePaths = await downloader.downloadMusic(job.data.trackUrl);
 
+    console.log(savedFilePaths);
+
     savedFilePaths.forEach(path => { uploader(path.path, job.data.mgaAccessToken); });
   });
 }

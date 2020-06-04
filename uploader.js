@@ -27,6 +27,7 @@ function uploadFile(client, filePath) {
       const response = await uploadTask.upload();
 
       console.log(response);
+      console.log("Successfully Uploaded!");
     } catch (error) {
       console.error(error);
     }
