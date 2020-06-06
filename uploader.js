@@ -33,7 +33,6 @@ function uploadFile(client, filePath) {
       const uploadTask = await OneDriveLargeFileUploadTask.create(client, file, options);
       const response = await uploadTask.upload();
 
-      console.log(response);
       console.log("Successfully Uploaded!");
 
       // Delete file after successful upload
