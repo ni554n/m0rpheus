@@ -6,6 +6,8 @@ module.exports = async (trackUrl) => {
   try {
     return await dFi(trackUrl);
   } catch (error) {
-    console.error(error);
+    console.error(`dFi has failed to download: ${trackUrl} because of ${error}`);
+
+    throw error;
   }
 }

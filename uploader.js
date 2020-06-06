@@ -4,14 +4,20 @@ const path = require("path");
 require("isomorphic-fetch");
 const { Client, OneDriveLargeFileUploadTask } = require("@microsoft/microsoft-graph-client");
 
-const tokenExpiredError = new Error("Microsoft Graph API access token provided by Pipedream is no longer valid. Please reauthenticate.");
+const tokenExpiredError = new Error("Microsoft Graph API access token provided by Pipedream is no longer valid. Please reauthenticate on Pipedream.");
 
-module.exports = (filePath, accessToken) => {
+exports.upload = (filePath, accessToken) => {
   const authProvider = callback => callback(tokenExpiredError, accessToken);
 
-  const client = Client.init({ authProvider });
+  try {
+    const client = Client.init({ authProvider });
 
-  uploadFile(client, filePath);
+    uploadFile(client, filePath);
+  } catch (error) {
+    console.log(error);
+
+    throw error;
+  }
 }
 
 function uploadFile(client, filePath) {
@@ -29,6 +35,9 @@ function uploadFile(client, filePath) {
 
       console.log(response);
       console.log("Successfully Uploaded!");
+
+      // Delete file after successful upload
+      fs.unlink(filePath, (error) => { if (error) console.error(error); });
     } catch (error) {
       console.error(error);
     }
