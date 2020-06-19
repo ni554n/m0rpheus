@@ -13,10 +13,10 @@ exports.upload = (filePath, accessToken) => {
     const client = Client.init({ authProvider });
 
     uploadFile(client, filePath);
-  } catch (error) {
-    console.log(error);
+  } catch (clientInitError) {
+    console.log(clientInitError);
 
-    throw error;
+    throw clientInitError;
   }
 }
 
@@ -33,7 +33,7 @@ function uploadFile(client, filePath) {
       const uploadTask = await OneDriveLargeFileUploadTask.create(client, file, options);
       const response = await uploadTask.upload();
 
-      console.log("Successfully Uploaded!");
+      console.log(`Successfully uploaded ${options.path}`);
 
       // Delete file after successful upload
       fs.unlink(filePath, (error) => { if (error) console.error(error); });
