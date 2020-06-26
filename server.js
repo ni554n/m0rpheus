@@ -24,7 +24,7 @@ const router = function (request, response) {
         return;
       }
 
-      workQueue.add(trackUrl);
+      workQueue.add({ trackUrl });
 
       respondWith(response, 202, "Successfully added to the Queue!");
     }).on("error", (error) => {
