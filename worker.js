@@ -18,9 +18,9 @@ function start() {
   const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
   workQueue.process(100, async (job) => {
-    const downloadedMusicPaths = await downloader.downloadMusic(job.data.trackUrl);
+    const downloadedMusicPaths = await downloader.downloadMusic(job.data);
 
-    downloadedMusicPaths.forEach((path) => { uploader.upload(path.path, job.data.mgaAccessToken); });
+    downloadedMusicPaths.forEach((path) => { uploader.upload(path.path); });
   });
 }
 
