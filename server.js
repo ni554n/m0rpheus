@@ -9,24 +9,23 @@ const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
 const router = function (request, response) {
   if (request.url === "/matrix" && request.method === "POST") {
-    // Raw JSON body: { "accessKey": string, "trackUrl": string }
+    // Check for authorization
+    if (request.headers["authorization"] !== process.env.M0RPHEUS_ACCESS_KEY) {
+      respondWith(response, 401, "Access failed. Wrong authentication code.");
+
+      return;
+    }
+
+    // Raw JSON body: { "mgaAccessToken": string, "trackUrl": string }
     const body = [];
 
     request.on("data", (chunk) => {
       body.push(chunk);
     }).on("end", async () => {
-      const { accessKey, trackUrl } = JSON.parse(body.toString());
+      const jsonBody = JSON.parse(body.toString());
+      workQueue.add(jsonBody);
 
-      // Check for authorization
-      if (accessKey !== process.env.M0RPHEUS_ACCESS_KEY) {
-        respondWith(response, 401, "Access failed. Wrong authentication code.");
-
-        return;
-      }
-
-      workQueue.add({ trackUrl });
-
-      respondWith(response, 202, "Successfully added to the Queue!");
+      respondWith(response, 202, `Successfully added ${jsonBody.trackUrl} to the Queue!`);
     }).on("error", (error) => {
       console.error(error);
 

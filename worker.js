@@ -20,7 +20,7 @@ function start() {
   workQueue.process(100, async (job) => {
     const downloadedMusicPaths = await downloader.downloadMusic(job.data.trackUrl);
 
-    downloadedMusicPaths.forEach((path) => { uploader.upload(path.path); });
+    downloadedMusicPaths.forEach((path) => { uploader.upload(path.path, job.data.mgaAccessToken); });
   });
 }
 

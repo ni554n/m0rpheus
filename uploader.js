@@ -4,11 +4,10 @@ const path = require("path");
 require("isomorphic-fetch");
 const { Client, OneDriveLargeFileUploadTask } = require("@microsoft/microsoft-graph-client");
 
-const MS_GRAPH_TOKEN = process.env.MS_GRAPH_TOKEN;
 const tokenExpiredError = new Error("Microsoft Graph API access token is invalid. Please reauthenticate.");
 
-exports.upload = (filePath) => {
-  const authProvider = callback => callback(tokenExpiredError, MS_GRAPH_TOKEN);
+exports.upload = (filePath, accessToken) => {
+  const authProvider = callback => callback(tokenExpiredError, accessToken);
 
   try {
     const client = Client.init({ authProvider });
