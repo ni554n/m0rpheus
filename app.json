@@ -13,14 +13,16 @@
   ],
   "env": {
     "M0RPHEUS_ACCESS_KEY": {
-      "description": "Random string for checking authorization on webhook request.",
-      "generator": "secret"
+      "description": "A password like secret key for verifying authorization to prevent spam.",
+      "required": true
     },
     "IFTTT_WEBHOOK_KEY": {
-      "description": "Key acquired from https://ifttt.com/maker_webhooks Documentation page."
+      "description": "Key acquired from https://ifttt.com/maker_webhooks documentation page. Needed for pushing error events to /push trigger on IFTTT Webhook.",
+      "required": false
     },
     "ARL": {
-      "description": "ARL cookie value acquired from an Deezer account."
+      "description": "ARL cookie value from a signed in Deezer account: https://notabug.org/RemixDev/deemix/wiki/Getting+your+own+ARL",
+      "required": false
     }
   }
 }
