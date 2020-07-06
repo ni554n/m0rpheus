@@ -1,0 +1,26 @@
+{
+  "name": "m0rpheus",
+  "description": "A service for downloading Deezer, Spotify and Tidal music (or album) to your Onedrive.",
+  "repository": "https://github.com/ni554n/m0rpheus",
+  "keywords": [
+    "spotify",
+    "deezer",
+    "tidal",
+    "onedrive",
+    "d-fi",
+    "music",
+    "downloader"
+  ],
+  "env": {
+    "M0RPHEUS_ACCESS_KEY": {
+      "description": "Random string for checking authorization on webhook request.",
+      "generator": "secret"
+    },
+    "IFTTT_WEBHOOK_KEY": {
+      "description": "Key acquired from https://ifttt.com/maker_webhooks Documentation page."
+    },
+    "ARL": {
+      "description": "ARL cookie value acquired from an Deezer account."
+    }
+  }
+}
