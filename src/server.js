@@ -25,7 +25,8 @@ const router = function (request, response) {
       const jsonBody = JSON.parse(body.toString());
       workQueue.add(jsonBody);
 
-      respondWith(response, 202, `Successfully added ${jsonBody.trackUrl} to the Queue!`);
+      const {trackUrl} = jsonBody;
+      respondWith(response, 202, `Successfully added ${trackUrl} to the Queue!`);
     }).on("error", (error) => {
       console.error(error);
 

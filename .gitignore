@@ -2,3 +2,8 @@
 node_modules
 *.log
 .env
+
+# IntelliJ
+*.iml
+.idea/*
+!.idea/dictionaries

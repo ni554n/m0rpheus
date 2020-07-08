@@ -1,10 +1,10 @@
 {
   "name": "m0rpheus",
-  "version": "1.2.1",
-  "description": "Download music from online servies and transfer them directly to OneDrive",
-  "main": "server.js",
+  "version": "1.2.2",
+  "description": "Download music from online services and transfer them directly to OneDrive",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server.js",
     "local": "heroku local web"
   },
   "dependencies": {

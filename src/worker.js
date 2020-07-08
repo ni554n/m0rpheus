@@ -3,6 +3,7 @@ const Queue = require("bull");
 
 const downloader = require("./downloader");
 const uploader = require("./uploader");
+const notify = require("./notify");
 
 // Connect to a local redis instance locally, and the Heroku-provided URL in production
 const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
@@ -18,12 +19,20 @@ function start() {
   const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
   workQueue.process(100, async (job) => {
-    const downloadedMusicPaths = await downloader.downloadMusic(job.data.trackUrl);
+    const {trackUrl, mgaAccessToken} = job.data;
 
-    downloadedMusicPaths.forEach((path) => { uploader.upload(path.path, job.data.mgaAccessToken); });
+    try {
+      const downloadedMusicPaths = await downloader.downloadMusic(trackUrl);
+
+      downloadedMusicPaths.forEach((path) => {
+        uploader.upload(path.path, mgaAccessToken);
+      });
+    } catch (error) {
+      notify.push(`Download Failed: ${trackUrl}`, error);
+    }
   });
 }
 
 // Initialize the clustered worker process
 // See: https://devcenter.heroku.com/articles/node-concurrency for more info
-throng({ workers, start });
+throng({workers, start});
