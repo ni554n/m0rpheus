@@ -30,7 +30,8 @@ function uploadFile(client, filePath) {
     };
 
     try {
-      await OneDriveLargeFileUploadTask.create(client, file, options).upload();
+      const uploadTask = await OneDriveLargeFileUploadTask.create(client, file, options);
+      await uploadTask.upload();
     } finally {
       // Delete file after successful upload
       fs.unlink(filePath, (error) => {

@@ -1,6 +1,6 @@
 {
   "name": "m0rpheus",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Download music from online services and transfer them directly to OneDrive",
   "main": "src/server.js",
   "scripts": {
