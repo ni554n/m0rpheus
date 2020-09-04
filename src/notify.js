@@ -1,4 +1,4 @@
-const {name} = require("../package.json");
+const { name } = require("../package.json");
 const fetch = require("isomorphic-fetch");
 
 exports.push = (message, object) => {
@@ -13,6 +13,7 @@ exports.push = (message, object) => {
     {
       method: "post",
       body: JSON.stringify(body),
-      headers: {"Content-Type": "application/json"},
-    });
+      headers: { "Content-Type": "application/json" },
+    },
+  );
 };

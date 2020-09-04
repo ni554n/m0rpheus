@@ -16,22 +16,29 @@ const router = function (request, response) {
       return;
     }
 
-    // Raw JSON body: { "mgaAccessToken": string, "trackUrl": string }
+    // Raw JSON body: { "mgaAccessToken": string, "trackUrl": string, "trackName": string }
     const body = [];
 
-    request.on("data", (chunk) => {
-      body.push(chunk);
-    }).on("end", async () => {
-      const jsonBody = JSON.parse(body.toString());
-      workQueue.add(jsonBody);
+    request
+      .on("data", (chunk) => {
+        body.push(chunk);
+      })
+      .on("end", async () => {
+        const jsonBody = JSON.parse(body.toString());
+        workQueue.add(jsonBody);
 
-      const {trackUrl} = jsonBody;
-      respondWith(response, 202, `Successfully added ${trackUrl} to the Queue!`);
-    }).on("error", (error) => {
-      console.error(error);
+        const { trackName } = jsonBody;
+        respondWith(
+          response,
+          202,
+          `Successfully added ${trackName} to the Queue!`,
+        );
+      })
+      .on("error", (error) => {
+        console.error(error);
 
-      respondWith(response, 500);
-    });
+        respondWith(response, 500);
+      });
   } else {
     respondWith(response, 404);
   }

@@ -15,7 +15,8 @@ and JSON body:
 ```JSON
 {
   "mgaAccessToken": "<Microsoft Graph API Access Token>",
-  "trackUrl": "<Song or Album URL>"
+  "trackUrl": "<Song or Album URL>",
+  "trackName": "<Song Title>"
 }
 ```
 

@@ -19,7 +19,7 @@ function start() {
   const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
   workQueue.process(100, async (job) => {
-    const {trackUrl, mgaAccessToken} = job.data;
+    const { mgaAccessToken, trackUrl, trackName } = job.data;
 
     try {
       const downloadedMusicPaths = await downloader.downloadMusic(trackUrl);
@@ -28,11 +28,11 @@ function start() {
         uploader.upload(path.path, mgaAccessToken);
       });
     } catch (error) {
-      notify.push(`Download Failed: ${trackUrl}`, error);
+      notify.push(`Download Failed -> ${trackName}`, error);
     }
   });
 }
 
 // Initialize the clustered worker process
 // See: https://devcenter.heroku.com/articles/node-concurrency for more info
-throng({workers, start});
+throng({ workers, start });
