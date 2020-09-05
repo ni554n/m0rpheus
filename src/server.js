@@ -27,11 +27,10 @@ const router = function (request, response) {
         const jsonBody = JSON.parse(body.toString());
         workQueue.add(jsonBody);
 
-        const { trackName } = jsonBody;
         respondWith(
           response,
           202,
-          `Successfully added ${trackName} to the Queue!`,
+          `Successfully added ${jsonBody.trackName} to the Queue!`,
         );
       })
       .on("error", (error) => {

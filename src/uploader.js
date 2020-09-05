@@ -53,7 +53,7 @@ function uploadFile(client, filePath) {
         payload,
       );
 
-      const uploadTask = await new LargeFileUploadTask(
+      const uploadTask = new LargeFileUploadTask(
         client,
         fileObject,
         uploadSession,
