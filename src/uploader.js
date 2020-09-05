@@ -59,8 +59,9 @@ function uploadFile(client, filePath) {
         uploadSession,
       );
 
-      const response = await uploadTask.upload();
-      return response;
+      await uploadTask.upload();
+    } catch(error) {
+      console.error(error);
     } finally {
       // Delete file after successful upload
       fs.unlink(filePath, (error) => {
