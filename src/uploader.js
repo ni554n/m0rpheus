@@ -32,7 +32,7 @@ function uploadFile(client, filePath) {
     const fileName = path.basename(filePath);
 
     try {
-      const requestUrl = `/drives/me/root:Music/${fileName}:/createUploadSession`;
+      const requestUrl = `/drives/me/root:/Music/${fileName}:/createUploadSession`;
 
       const payload = {
         item: {
@@ -62,6 +62,8 @@ function uploadFile(client, filePath) {
       await uploadTask.upload();
     } catch(error) {
       console.error(error);
+
+      throw error;
     } finally {
       // Delete file after successful upload
       fs.unlink(filePath, (error) => {
