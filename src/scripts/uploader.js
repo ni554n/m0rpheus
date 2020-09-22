@@ -29,10 +29,13 @@ function uploadFile(client, filePath) {
   fs.readFile(filePath, {}, async (error, file) => {
     if (error) throw error;
 
+    // filePath example: .../Music/Album/Title.mp3
     const fileName = path.basename(filePath);
+    const directoryName = path.basename(path.dirname(filePath));
+    const relativeFilePath = `${directoryName}/${fileName}`;
 
     try {
-      const requestUrl = `/drives/me/root:/Music/${fileName}:/createUploadSession`;
+      const requestUrl = `/drives/me/root:/Music/${relativeFilePath}:/createUploadSession`;
 
       const payload = {
         item: {
@@ -60,7 +63,7 @@ function uploadFile(client, filePath) {
       );
 
       await uploadTask.upload();
-    } catch(error) {
+    } catch (error) {
       console.error(error);
 
       throw error;

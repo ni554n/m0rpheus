@@ -7,6 +7,12 @@ const QUEUE_NAME = process.env.QUEUE_NAME || "queue";
 
 const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
+/**
+ * Handle incoming request on /matrix.
+ *
+ * @param {http.IncomingMessage} request
+ * @param {http.ServerResponse} response
+ */
 const router = function (request, response) {
   if (request.url === "/matrix" && request.method === "POST") {
     // Check for authorization

@@ -1,11 +1,18 @@
-const { name } = require("../package.json");
+const { name: programName } = require("../../package.json");
 const fetch = require("isomorphic-fetch");
 
-exports.push = async (message, object) => {
+/**
+ * Trigger a "/push" webhook on IFTTT.
+ * Can be tested directly on "Documentation" page of https://ifttt.com/maker_webhooks
+ * 
+ * @param {string} message 
+ * @param {Error} error 
+ */
+exports.push = async (message, error) => {
   const body = {
-    value1: name,
+    value1: programName,
     value2: message,
-    value3: object,
+    value3: `${error.message}\n${error.stack}`,
   };
 
   try {
