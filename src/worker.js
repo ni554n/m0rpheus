@@ -34,4 +34,9 @@ function startWorker() {
 
 // Initialize the clustered worker process
 // See: https://devcenter.heroku.com/articles/node-concurrency for more info
-throng(workerCount, startWorker);
+try {
+  // @ts-ignore
+  throng({ worker: workerStartFunction, count: workerCount });
+} catch (error) {
+  console.error(error);
+}
