@@ -14,7 +14,7 @@ const QUEUE_NAME = process.env.QUEUE_NAME || "queue";
 // See: https://devcenter.heroku.com/articles/node-concurrency for more info
 const workerCount = process.env.WEB_CONCURRENCY || 1;
 
-function startWorker() {
+function workerStartFunction() {
   const workQueue = new Queue(QUEUE_NAME, REDIS_URL);
 
   workQueue.process(100, async (job) => {
