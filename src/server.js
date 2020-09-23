@@ -36,7 +36,7 @@ const router = function (request, response) {
         respondWith(
           response,
           202,
-          `Successfully added ${jsonBody.trackName} to the Queue!`,
+          `Successfully added: ${jsonBody.trackName} to the Queue!`,
         );
       })
       .on("error", (error) => {
