@@ -23,6 +23,8 @@ async function download(trackUrl) {
 
     throw Error(errorMessage);
   }
+
+  return result;
 };
 
 exports.downloadMusic = async (trackUrl) => {
