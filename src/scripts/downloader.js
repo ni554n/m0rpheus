@@ -13,7 +13,7 @@ function readArl() {
   return arl;
 }
 
-module.exports = async (trackUrl) => {
+async function download(trackUrl) {
   const result = await dFi(trackUrl);
 
   if (result instanceof Error || result.error) {
@@ -26,5 +26,5 @@ module.exports = async (trackUrl) => {
 };
 
 exports.downloadMusic = async (trackUrl) => {
-  return await dFi(trackUrl);
+  return await download(trackUrl);
 };
