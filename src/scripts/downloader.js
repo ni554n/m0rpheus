@@ -5,7 +5,7 @@ deezerApi.arl = process.env.ARL || readArl();
 
 function readArl() {
   const configFile = fs.readFileSync(
-    "../../node_modules/d-fi/src/config.js",
+    "./../../node_modules/d-fi/src/config.js",
     "utf-8",
   );
   const arl = configFile.match(/const arl =.*'(.+)';/s)[1];
