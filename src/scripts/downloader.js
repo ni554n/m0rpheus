@@ -1,7 +1,7 @@
 const { dFi, deezerApi } = require("d-fi");
 const fs = require("fs");
 
-deezerApi.arl = process.env.ARL || readArl();
+deezerApi.initDeezerApi(process.env.ARL || readArl());
 
 function readArl() {
   const configFile = fs.readFileSync(
