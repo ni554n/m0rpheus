@@ -8,9 +8,9 @@
     "local": "heroku local web"
   },
   "dependencies": {
-    "@microsoft/microsoft-graph-client": "^2.0.0",
-    "bull": "^3.18.0",
-    "d-fi": "^1.3.8",
+    "@microsoft/microsoft-graph-client": "^2.1.1",
+    "bull": "^3.18.1",
+    "d-fi": "^1.3.9",
     "isomorphic-fetch": "^3.0.0",
     "throng": "^5.0.0"
   },
