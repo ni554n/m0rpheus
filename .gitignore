@@ -7,3 +7,6 @@ node_modules
 *.iml
 .idea/*
 !.idea/dictionaries
+
+# VSCode
+.vscode
