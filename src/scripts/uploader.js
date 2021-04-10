@@ -35,7 +35,7 @@ function uploadFile(client, filePath) {
     const relativeFilePath = `${directoryName}/${fileName}`;
 
     try {
-      const requestUrl = `/drives/me/root:/Music/${relativeFilePath}:/createUploadSession`;
+      const requestUrl = `/drives/me/root:/Music/${encodeURIComponent(relativeFilePath)}:/createUploadSession`;
 
       const payload = {
         item: {
